@@ -7,6 +7,7 @@ import { numberReducer } from './reducers/numberReducer'
 import thunk from 'redux-thunk'
 
 import './index.css';
+import './sass/index.scss'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

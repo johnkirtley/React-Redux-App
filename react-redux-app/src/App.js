@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import { connect } from 'react-redux';
 
-import Form from './components/Form'
+import Header from './components/Header';
+import Form from './components/Form';
 
 function App() {
   return (
-    <div className="App">
+    <div className="main-container">
+      <Header />
       <Form />
     </div>
   );

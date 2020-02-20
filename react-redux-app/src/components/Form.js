@@ -10,6 +10,7 @@ const NumberForm = props => {
     const handleGetData = e => {
         e.preventDefault();
         props.getNumber(Number(number))
+        setNumber('')
     }
 
     const handleChanges = e => {
@@ -19,20 +20,29 @@ const NumberForm = props => {
 
     return (
         <>
-            <label htmlFor="number">Enter Number</label><input type="text" name="number" value={number} onChange={handleChanges} />
-            <div><button onClick={handleGetData}>Get Data</button></div>
+            <div className='form-container'>
+                <div className='form'>
+                    <label htmlFor="number"></label>
+                    <input type="text" name="number" value={number} onChange={handleChanges} placeholder="Enter a number..." />
+                </div>
+                <button className='submit-button' onClick={handleGetData}>Get Info</button>
+            </div>
             {props.data.map(item => {
                 return (
-                    <>
+                    <div className="info-container">
                         {item.valid ?
                             <ul>
-                                <li>Number: {item.number}</li>
-                                <li>Country: {item.country_code}</li>
-                                <li>Location: {item.location}</li>
-                                <li>Carrier: {item.carrier}</li>
+                                <li><span>Number:</span> {item.number}</li>
+                                <li><span>Country:</span> {item.country_code}</li>
+                                <li><span>Location:</span> {item.location}</li>
+                                <li><span>Carrier:</span> {item.carrier}</li>
                             </ul>
-                            : 'Number is not valid'}
-                    </>
+                            : <div className='error'>
+                                <p className="emoji"><span role="img" aria-label="confused emoji">🧐</span></p>
+                                <p>Number is not valid.</p>
+                                <p>Please don't forget country code.</p>
+                            </div>}
+                    </div>
                 )
             })}
         </>
