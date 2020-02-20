@@ -16,5 +16,4 @@ export const numberReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
 }

@@ -5,17 +5,20 @@ import { getNumber } from '../actions';
 
 const NumberForm = props => {
     const [number, setNumber] = useState('')
-    console.log(number)
 
     const handleGetData = e => {
         e.preventDefault();
-        props.getNumber(Number(number))
+        props.getNumber(Number((removeHyphens(number))))
         setNumber('')
     }
 
     const handleChanges = e => {
         e.preventDefault();
         setNumber(e.target.value)
+    }
+
+    const removeHyphens = (num) => {
+        return num.includes('-') ? num.replace(/-/g, '') : num
     }
 
     return (
