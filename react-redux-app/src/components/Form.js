@@ -52,13 +52,16 @@ const NumberForm = props => {
                     <>
                         <div className="info-container">
                             {item.valid ?
-                                <ul>
-                                    <li><span>Number:</span> {item.number}</li>
-                                    <li><span>Country:</span> {item.country_code}</li>
-                                    <li><span>Location:</span> {item.location}</li>
-                                    <li><span>Carrier:</span> {item.carrier}</li>
-                                    <li><span>Line type:</span> {item.line_type}</li>
-                                </ul>
+                                <>
+                                    <ul>
+                                        <li><span>Number:</span> {item.number}</li>
+                                        <li><span>Country:</span> {item.country_code}</li>
+                                        <li><span>Location:</span> {item.location}</li>
+                                        <li><span>Carrier:</span> {item.carrier}</li>
+                                        <li><span>Line type:</span> {item.line_type}</li>
+                                        <li className="flag"><span>Country Flag: </span> <img src={`https://www.countryflags.io/${item.country_code}/flat/64.png`} alt={`${item.country_code} flag`}></img></li>
+                                    </ul>
+                                </>
                                 : <div className='error'>
                                     <p className="emoji"><span role="img" aria-label="confused emoji">🧐</span></p>
                                     <p>Number not found.</p>
