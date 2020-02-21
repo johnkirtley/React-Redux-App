@@ -1,0 +1,47 @@
+.saved-page {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.saved-title {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.saved-info-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: lighten($color: $light-blue, $amount: 15);
+    width: 40%;
+    margin: 2% auto;
+
+    ul {
+        list-style: none;
+        padding: 7% 0;
+        font-size: 1.5rem;
+
+        li {
+            line-height: 3rem;
+        }
+
+        .flag {
+            display: flex;
+            align-items: center;
+
+            img {
+                padding-left: 2%;
+            }
+        }
+
+        span {
+            font-weight: bold;
+        }
+    }
+}
