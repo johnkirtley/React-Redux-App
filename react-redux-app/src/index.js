@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux'
 import { numberReducer } from './reducers/numberReducer'
 import thunk from 'redux-thunk'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import './index.css';
 import './sass/index.scss'
@@ -15,7 +16,9 @@ const store = createStore(numberReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router>
+            <App />
+        </Router>
     </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

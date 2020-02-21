@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { connect } from 'react-redux';
-import { getNumber } from '../actions';
+import { getNumber, saved } from '../actions';
 import Loader from 'react-loader-spinner';
+import SavedContext from '../contexts/ProductContext'
 
 
 const NumberForm = props => {
     const [number, setNumber] = useState('')
     const [countryCode, setCountryCode] = useState('')
+    const { addItem } = useContext(SavedContext)
 
     const handleGetData = () => {
         props.getNumber(Number((removeHyphens(number))), Number(countryCode))
@@ -46,6 +48,7 @@ const NumberForm = props => {
                 </div>
                 <button className='submit-button' onClick={handleGetData}>Get Info</button>
                 {props.isLoading ? loader() : ''}
+                {props.isSaved ? <div className="is-saved">Item Saved</div> : ''}
             </div>
             {props.data.map(item => {
                 return (
@@ -60,6 +63,7 @@ const NumberForm = props => {
                                         <li><span>Carrier:</span> {item.carrier}</li>
                                         <li><span>Line type:</span> {item.line_type}</li>
                                         <li className="flag"><span>Country Flag: </span> <img src={`https://www.countryflags.io/${item.country_code}/flat/64.png`} alt={`${item.country_code} flag`}></img></li>
+                                        <button onClick={() => addItem(item)}>Save Information</button>
                                     </ul>
                                 </>
                                 : <div className='error'>
@@ -78,8 +82,9 @@ const NumberForm = props => {
 const mapStateToProps = state => {
     return {
         data: [...state.data],
-        isLoading: state.isLoading
+        isLoading: state.isLoading,
+        isSaved: state.isSaved
     }
 }
 
-export default connect(mapStateToProps, { getNumber })(NumberForm);
+export default connect(mapStateToProps, { getNumber, saved })(NumberForm);

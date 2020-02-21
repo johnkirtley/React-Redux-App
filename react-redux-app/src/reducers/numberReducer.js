@@ -1,9 +1,10 @@
-import { GET_NUMBER, LOADING } from '../actions'
+import { GET_NUMBER, LOADING, SAVED } from '../actions'
 
 
 export const initialState = {
     data: [],
-    isLoading: false
+    isLoading: false,
+    isSaved: false
 }
 
 
@@ -19,6 +20,12 @@ export const numberReducer = (state = initialState, action) => {
                 ...state,
                 data: [action.payload],
                 isLoading: false
+            }
+        case SAVED:
+            return {
+                ...state,
+                data: [],
+                isSaved: action.payload
             }
         default:
             return state;
